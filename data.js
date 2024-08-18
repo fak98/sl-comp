@@ -1,58 +1,4 @@
-function monthDiff(d1, d2) {
-    var months;
-    months = (d2.getFullYear() - d1.getFullYear()) * 12;
-    months -= d1.getMonth() + 1;
-    months += d2.getMonth();
-    return months <= 0 ? 0 : months;
-}
 
-function addCheckbox(id, enabled, displayName) {
-
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.name = "checkbox-" + id;
-        checkbox.checked = enabled;
-        checkbox.id = "id-checkbox-" + id;
-
-        var label = document.createElement("label");
-        label.htmlFor = "id-checkbox-" + id;
-        label.appendChild(document.createTextNode(displayName));
-
-        var container = document.createElement("span");
-        container.appendChild(checkbox);
-        container.appendChild(label);
-
-        return container
-
-}
-
-function addTextField(id, displayName) {
-
-        var textField = document.createElement("input");
-                textField.type = "text";
-                textField.name = "textField-" + id;
-                textField.id = "id-textField-" + id;
-
-                var label = document.createElement("label");
-                label.htmlFor = "id-textField-" + id;
-                label.style = "padding-right: 10px"
-                label.appendChild(document.createTextNode(displayName));
-
-
-                var container = document.createElement("span");
-                container.appendChild(label);
-                container.appendChild(textField);
-
-                return container
-
-}
-
-function insertToControls(element) {
-
-        var container = document.getElementById("controls");
-        container.appendChild(element);
-
-}
 
 var players = new Object([{
                 name: "Jaanshere",
@@ -1619,6 +1565,8 @@ google.charts.setOnLoadCallback(() => {
             curveType: "function",
         };
 
+
+
         var limitTo5_20k = document.getElementById("id-checkbox-limit-level").checked;
         var minLevel = document.getElementById("id-textField-minLevel").value;
         var maxLevel = document.getElementById("id-textField-maxLevel").value;
@@ -1658,6 +1606,66 @@ google.charts.setOnLoadCallback(() => {
                 document.getElementById("level_chart"));
         chart.draw(data, options);
     }
+    function monthDiff(d1, d2) {
+        var months;
+        months = (d2.getFullYear() - d1.getFullYear()) * 12;
+        months -= d1.getMonth() + 1;
+        months += d2.getMonth();
+        return months <= 0 ? 0 : months;
+    }
+
+    function addCheckbox(id, enabled, displayName) {
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = "checkbox-" + id;
+            checkbox.checked = enabled;
+            checkbox.id = "id-checkbox-" + id;
+
+            var label = document.createElement("label");
+            label.htmlFor = "id-checkbox-" + id;
+            label.appendChild(document.createTextNode(displayName));
+
+            var container = document.createElement("span");
+            container.appendChild(checkbox);
+            container.appendChild(label);
+
+            checkbox.addEventListener("click", drawChart_level_chart);
+
+            return container
+
+    }
+
+    function addTextField(id, displayName) {
+
+            var textField = document.createElement("input");
+                    textField.type = "text";
+                    textField.name = "textField-" + id;
+                    textField.id = "id-textField-" + id;
+
+                    var label = document.createElement("label");
+                    label.htmlFor = "id-textField-" + id;
+                    label.style = "padding-right: 10px"
+                    label.appendChild(document.createTextNode(displayName));
+
+
+                    var container = document.createElement("span");
+                    container.appendChild(label);
+                    container.appendChild(textField);
+
+                    textField.addEventListener("input", drawChart_level_chart);
+
+                    return container
+
+    }
+
+    function insertToControls(element) {
+
+            var container = document.getElementById("controls");
+            container.appendChild(element);
+
+    }
+
     for (var pidx in players) {
         var player = players[pidx];
         insertToControls(addCheckbox(player.name, player.name == "Jonah", player.name));
@@ -1676,12 +1684,6 @@ google.charts.setOnLoadCallback(() => {
     container.appendChild(maxLevel)
     container.appendChild(document.createElement("br"))
     controls.appendChild(container)
-
-    const checkboxes = document.querySelectorAll(
-            "#controls input[type=checkbox]");
-    for (var check of checkboxes) {
-        check.addEventListener("click", drawChart_level_chart);
-    }
 
     if (document.getElementById("level_chart")) {
         drawChart_level_chart();
