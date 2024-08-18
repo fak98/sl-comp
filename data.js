@@ -6,6 +6,25 @@ function monthDiff(d1, d2) {
     return months <= 0 ? 0 : months;
 }
 
+function addCheckbox(id, enabled, displayName) {
+
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "checkbox-" + id;
+        checkbox.checked = enabled;
+        checkbox.id = "id-checkbox-" + id;
+
+        var label = document.createElement("label");
+        label.htmlFor = "id-checkbox-" + id;
+        label.appendChild(document.createTextNode(displayName));
+
+        var container = document.getElementById("controls");
+        container.appendChild(checkbox);
+        container.appendChild(label);
+
+}
+
+
 var players = new Object([{
                 name: "Jaanshere",
                 dob: new Date("01 November 2010"),
@@ -1473,7 +1492,7 @@ var players = new Object([{
             },
             {
                 name: "Zain",
-                dob: new Date("27 July 2011"),
+                dob: new Date("01 April 2009"),
                 data: [
                     [new Date(1723963073000), 2961],
                     [new Date(1722519000000), 3055],
@@ -1570,6 +1589,9 @@ google.charts.setOnLoadCallback(() => {
             lineWidth: 1,
             curveType: "function",
         };
+
+        var limitTo5_20k = document.getElementById("id-checkbox-5-20k-limit").checked;
+
         var data = new google.visualization.DataTable();
         data.addColumn("number", "Months");
         var numberOfColumns = 1;
@@ -1593,7 +1615,10 @@ google.charts.setOnLoadCallback(() => {
                     datum[0] = monthDiff(player.dob, player.data[idx][0]);
                     for (var i = 1; i < datum.length; i++)
                         datum[i] = null;
-                    datum[column] = player.data[idx][1];
+                    var level = player.data[idx][1];
+                    if (!limitTo5_20k || (level > 4999 && level < 20001)) {
+                        datum[column] = level;
+                    }
                     data.addRow(datum);
                 }
             }
@@ -1604,20 +1629,11 @@ google.charts.setOnLoadCallback(() => {
     }
     for (var pidx in players) {
         var player = players[pidx];
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.name = "checkbox-" + player.name;
-        checkbox.checked = true;
-        checkbox.id = "id-checkbox-" + player.name;
-
-        var label = document.createElement("label");
-        label.htmlFor = "id-checkbox-" + player.name;
-        label.appendChild(document.createTextNode(player.name));
-
-        var container = document.getElementById("controls");
-        container.appendChild(checkbox);
-        container.appendChild(label);
+        addCheckbox(player.name, player.name == "Jonah", player.name)
     }
+
+    addCheckbox("5-20k-limit", false, "Limit to 5-20k")
+
 
     const checkboxes = document.querySelectorAll(
             "#controls input[type=checkbox]");
