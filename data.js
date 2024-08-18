@@ -18,16 +18,45 @@ function addCheckbox(id, enabled, displayName) {
         label.htmlFor = "id-checkbox-" + id;
         label.appendChild(document.createTextNode(displayName));
 
-        var container = document.getElementById("controls");
+        var container = document.createElement("span");
         container.appendChild(checkbox);
         container.appendChild(label);
 
+        return container
+
 }
 
+function addTextField(id, displayName) {
+
+        var textField = document.createElement("input");
+                textField.type = "text";
+                textField.name = "textField-" + id;
+                textField.id = "id-textField-" + id;
+
+                var label = document.createElement("label");
+                label.htmlFor = "id-textField-" + id;
+                label.style = "padding-right: 10px"
+                label.appendChild(document.createTextNode(displayName));
+
+
+                var container = document.createElement("span");
+                container.appendChild(label);
+                container.appendChild(textField);
+
+                return container
+
+}
+
+function insertToControls(element) {
+
+        var container = document.getElementById("controls");
+        container.appendChild(element);
+
+}
 
 var players = new Object([{
                 name: "Jaanshere",
-                dob: new Date("01 November 2010"),
+                dob: new Date("01 October 2010"),
                 data: [
                     [new Date(1722519000000), 4678],
                     [new Date(1719889200000), 4036],
@@ -1469,7 +1498,7 @@ var players = new Object([{
                 ]
             }, {
                 name: "Zeeshaan",
-                dob: new Date("27 July 2011"),
+                dob: new Date("01 July 2011"),
                 data: [
                     [new Date(1722519000000), 2038],
                     [new Date(1719889200000), 1578],
@@ -1492,7 +1521,7 @@ var players = new Object([{
             },
             {
                 name: "Zain",
-                dob: new Date("01 April 2009"),
+                dob: new Date("01 February 2009"),
                 data: [
                     [new Date(1723963073000), 2961],
                     [new Date(1722519000000), 3055],
@@ -1590,7 +1619,9 @@ google.charts.setOnLoadCallback(() => {
             curveType: "function",
         };
 
-        var limitTo5_20k = document.getElementById("id-checkbox-5-20k-limit").checked;
+        var limitTo5_20k = document.getElementById("id-checkbox-limit-level").checked;
+        var minLevel = document.getElementById("id-textField-minLevel").value;
+        var maxLevel = document.getElementById("id-textField-maxLevel").value;
 
         var data = new google.visualization.DataTable();
         data.addColumn("number", "Months");
@@ -1616,7 +1647,7 @@ google.charts.setOnLoadCallback(() => {
                     for (var i = 1; i < datum.length; i++)
                         datum[i] = null;
                     var level = player.data[idx][1];
-                    if (!limitTo5_20k || (level > 4999 && level < 20001)) {
+                    if (!limitTo5_20k || (level >= minLevel && level <= maxLevel)) {
                         datum[column] = level;
                     }
                     data.addRow(datum);
@@ -1629,11 +1660,22 @@ google.charts.setOnLoadCallback(() => {
     }
     for (var pidx in players) {
         var player = players[pidx];
-        addCheckbox(player.name, player.name == "Jonah", player.name)
+        insertToControls(addCheckbox(player.name, player.name == "Jonah", player.name));
     }
 
-    addCheckbox("5-20k-limit", false, "Limit to 5-20k")
+    var container = document.createElement("div");
+    var controls = document.getElementById("controls");
+    var checkbox = addCheckbox("limit-level", false, "Limit SquashLevels")
+    var minLevel = addTextField("minLevel", "Minimum Level");
+    var maxLevel = addTextField("maxLevel", "Maximum Level");
 
+    container.appendChild(checkbox);
+    container.appendChild(document.createElement("br"))
+    container.appendChild(minLevel)
+    container.appendChild(document.createElement("br"))
+    container.appendChild(maxLevel)
+    container.appendChild(document.createElement("br"))
+    controls.appendChild(container)
 
     const checkboxes = document.querySelectorAll(
             "#controls input[type=checkbox]");
