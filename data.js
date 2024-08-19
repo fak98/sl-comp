@@ -1515,11 +1515,47 @@ var players = new Object([{
 
         ]);
 
+
+var colors = {
+
+    'Jaanshere': 'black',
+    'Gabriel': 'blue',
+    'Luke': 'green',
+    'Jake': 'yellow',
+    'Ismail': 'red',
+    'Ali': 'orange',
+    'Zack': 'white',
+    'Michael': 'purple',
+    'Ronnie': 'brown',
+    'Alex': 'pink',
+    'George': 'gray',
+    'Jonah': 'magenta',
+    'Euan': 'cyan',
+    'Dylan R': 'violet',
+    'Zeeshaan': 'gold',
+    'Zain': 'silver'
+
+}
+
 google.charts.load("current", {
     packages: ["corechart"]
 });
 google.charts.setOnLoadCallback(() => {
     function drawChart_level_chart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("number", "Months");
+        var numberOfColumns = 1;
+
+        var selColors = new Array();
+        for (var idx in players) {
+            var player = players[idx];
+            var checkbox = document.getElementById("id-checkbox-" + player.name);
+            if (checkbox.checked) {
+                data.addColumn("number", player.name);
+                numberOfColumns++;
+                selColors.push(colors[player.name]);
+            }
+        }
         var options = {
             width: 800,
             height: 450,
@@ -1563,6 +1599,7 @@ google.charts.setOnLoadCallback(() => {
             dataOpacity: 0.7,
             lineWidth: 1,
             curveType: "function",
+            colors: selColors
         };
 
 
@@ -1571,18 +1608,6 @@ google.charts.setOnLoadCallback(() => {
         var minLevel = document.getElementById("id-textField-minLevel").value;
         var maxLevel = document.getElementById("id-textField-maxLevel").value;
 
-        var data = new google.visualization.DataTable();
-        data.addColumn("number", "Months");
-        var numberOfColumns = 1;
-        for (var idx in players) {
-            var player = players[idx];
-            var checkbox = document.getElementById("id-checkbox-" + player.name);
-            if (checkbox.checked) {
-                data.addColumn("number", player.name);
-                numberOfColumns++;
-            }
-        }
-        //data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
         var column = 0;
         for (var pidx in players) {
             var player = players[pidx];
