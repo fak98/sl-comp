@@ -4,6 +4,7 @@ var players = new Object([{
                 name: "Jaanshere",
                 dob: new Date("01 October 2010"),
                 data: [
+                    [new Date(1727740800000), 5283],
                     [new Date(1722519000000), 4678],
                     [new Date(1719889200000), 4036],
                     [new Date(1717259400000), 3637],
@@ -61,6 +62,7 @@ var players = new Object([{
                 name: "Gabriel",
                 dob: new Date("01 May 2009"),
                 data: [
+                    [new Date(1727740800000), 14064],
                     [new Date(1723820657000), 14660],
                     [new Date(1722519000000), 13920],
                     [new Date(1719889200000), 12500],
@@ -129,6 +131,7 @@ var players = new Object([{
                 name: "Luke",
                 dob: new Date("01 October 2009"),
                 data: [
+                    [new Date(1727740800000), 11185],
                     [new Date(1723660200000), 9877],
                     [new Date(1719340200000), 9448],
                     [new Date(1714318200000), 9556],
@@ -657,6 +660,7 @@ var players = new Object([{
                 name: "Jake",
                 dob: new Date("01 February 2009"),
                 data: [
+                    [new Date(1727740800000), 10659],
                     [new Date(1723821053000), 10880],
                     [new Date(1722519000000), 10935],
                     [new Date(1719889200000), 11399],
@@ -724,6 +728,7 @@ var players = new Object([{
                 name: "Ismail",
                 dob: new Date("01 April 2008"),
                 data: [
+                    [new Date(1727740800000), 12727],
                     [new Date(1723821217000), 13156],
                     [new Date(1711999800000), 13193],
                     [new Date(1709370000000), 12829],
@@ -780,6 +785,7 @@ var players = new Object([{
                 name: "Ali",
                 dob: new Date("01 April 2010"),
                 data: [
+                    [new Date(1727740800000), 8975],
                     [new Date(1719889200000), 7570],
                     [new Date(1717259400000), 7448],
                     [new Date(1711999800000), 7416],
@@ -839,6 +845,7 @@ var players = new Object([{
                 name: "Zack",
                 dob: new Date("01 April 2010"),
                 data: [
+                    [new Date(1727740800000), 4087],
                     [new Date(1723821484000), 4256],
                     [new Date(1722519000000), 4307],
                     [new Date(1719889200000), 4345],
@@ -910,6 +917,7 @@ var players = new Object([{
                 name: "Michael",
                 dob: new Date("01 December 2006"),
                 data: [
+                    [new Date(1727740800000), 14826],
                     [new Date(1722519000000), 14451],
                     [new Date(1719889200000), 14074],
                     [new Date(1717259400000), 13813],
@@ -1066,11 +1074,14 @@ var players = new Object([{
                     [new Date(1711999800000), 16538],
                     [new Date(1717259400000), 16582],
                     [new Date(1719889200000), 16525],
-                    [new Date(1722519000000), 16797], ],
+                    [new Date(1722519000000), 16797],
+                    [new Date(1727740800000), 16918],
+                ],
             }, {
                 name: "Alex",
                 dob: new Date("01 December 2006"),
                 data: [
+                    [new Date(1727740800000), 22251],
                     [new Date(1723822087000), 22856],
                     [new Date(1722519000000), 22113],
                     [new Date(1719889200000), 21886],
@@ -1159,6 +1170,7 @@ var players = new Object([{
                 name: "George",
                 dob: new Date("01 May 2009"),
                 data: [
+                    [new Date(1727740800000), 16325],
                     [new Date(1723822215000), 13764],
                     [new Date(1717259400000), 13563],
                     [new Date(1714629600000), 12794],
@@ -1221,6 +1233,7 @@ var players = new Object([{
                 name: "Jonah",
                 dob: new Date("01 August 2005"),
                 data: [
+                    [new Date(1727740800000), 44513],
                     [new Date(1723822327000), 42262],
                     [new Date(1717259400000), 42923],
                     [new Date(1714629600000), 43238],
@@ -1303,6 +1316,7 @@ var players = new Object([{
                 name: "Euan",
                 dob: new Date("01 October 2011"),
                 data: [
+                    [new Date(1727740800000), 2528],
                     [new Date(1723822602000), 2805],
                     [new Date(1722519000000), 2776],
                     [new Date(1719889200000), 2601],
@@ -1344,6 +1358,7 @@ var players = new Object([{
                 name: "Dylan R",
                 dob: new Date("01 June 2007"),
                 data: [
+                    [new Date(1727740800000), 17196],
                     [new Date(1723822709000), 15973],
                     [new Date(1722519000000), 16152],
                     [new Date(1719889200000), 15821],
@@ -1446,6 +1461,7 @@ var players = new Object([{
                 name: "Zeeshaan",
                 dob: new Date("01 July 2011"),
                 data: [
+                    [new Date(1727740800000), 2452],
                     [new Date(1722519000000), 2038],
                     [new Date(1719889200000), 1578],
                     [new Date(1717259400000), 1322],
@@ -1469,6 +1485,7 @@ var players = new Object([{
                 name: "Zain",
                 dob: new Date("01 February 2009"),
                 data: [
+                    [new Date(1727740800000), 3610],
                     [new Date(1723963073000), 2961],
                     [new Date(1722519000000), 3055],
                     [new Date(1719889200000), 2871],
